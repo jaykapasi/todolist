@@ -16,6 +16,7 @@ import android.todo.com.listeneres.OnItemActionListener;
 import android.todo.com.listeneres.OnItemUpdateListener;
 import android.todo.com.todolist.R;
 import android.todo.com.utils.AppConstants;
+import android.todo.com.utils.Utilities;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -117,6 +118,17 @@ public class HomeFragment extends ParentFragment implements OnItemActionListener
         Log.d(TAG, "OnResume");
         mTodoTaskList = DBHelper.getInstance().getDaoSession().getTodoTaskDao().loadAll();
         mRecyclerViewAdapter.setTodoTaskList(mTodoTaskList);
+        updateUI();
+    }
+
+    private void updateUI() {
+        if (mTodoTaskList.size() == 0) {
+            mTaskRecyclerView.setVisibility(View.GONE);
+            mNoTaskTxtView.setVisibility(View.VISIBLE);
+        } else {
+            mTaskRecyclerView.setVisibility(View.VISIBLE);
+            mNoTaskTxtView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -136,6 +148,7 @@ public class HomeFragment extends ParentFragment implements OnItemActionListener
     public void onItemUpdate() {
         mTodoTaskList = DBHelper.getInstance().getDaoSession().getTodoTaskDao().loadAll();
         mRecyclerViewAdapter.setTodoTaskList(mTodoTaskList);
+        updateUI();
     }
 
     @Override
@@ -146,6 +159,7 @@ public class HomeFragment extends ParentFragment implements OnItemActionListener
                 mSearchList.add(todoTask);
             }
         }
+        if (mSearchList.size() == 0) Utilities.showToast(getView(), "No records found!");
         mRecyclerViewAdapter.setTodoTaskList(mSearchList);
         return false;
     }
