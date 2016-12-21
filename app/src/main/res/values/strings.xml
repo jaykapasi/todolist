@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">ToDoList</string>
+    <string name="no_task_text">You don\'t have any task pending</string>
+
+    <!-- Animation duration (in milliseconds) -->
+    <integer name="config_shortAnimTime">200</integer>
+    <integer name="config_mediumAnimTime">400</integer>
+    <integer name="config_longAnimTime">500</integer>
+
+    <array name="dummy_items">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+        <item>Six</item>
+        <item>Seven</item>
+        <item>Eight</item>
+        <item>Nine</item>
+        <item>Ten</item>
+    </array>
+
+</resources>
